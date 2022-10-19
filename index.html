@@ -8,9 +8,10 @@
   <body> 
     <div class="container">
 			<h1>RainyCityCoder's Morse Code Translator</h1>
-			<p>A simple static site for translating Morse Code to letters, or letters to Morse Code.</p>
-			<p>Built with HTML and PyScript.</p>
+			<p>A simple static site for translating Morse Code to letters, or letters to Morse Code. Built with HTML, <a href="https://getbootstrap.com/">Bootstrap</a>, and <a href="https://pyscript.net/">PyScript</a>>.</p>
 			<div class="row">
+				<textarea name="input_str" id="input_str" 				class="border border-danger">
+				</textarea>
       	<py-script> 
 e_to_m = {
     'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
@@ -54,7 +55,7 @@ m_to_e = {
     '-.-.-':'Start'
     } 
 
-restart = "y"
+# restart = "y"
 
 def from_letters(code_input):
     """Translate letters to Morse"""
