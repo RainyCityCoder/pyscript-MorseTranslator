@@ -1,10 +1,17 @@
 <html>
   <head>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   </head>
   <body> 
-    <py-script> 
+    <div class="container">
+			<h1>RainyCityCoder's Morse Code Translator</h1>
+			<p>A simple static site for translating Morse Code to letters, or letters to Morse Code.</p>
+			<p>Built with HTML and PyScript.</p>
+			<div class="row">
+      	<py-script> 
 e_to_m = {
     'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
     'e':'.', 'f':'..-.', 'g':'--.', 'h':'....',
@@ -95,6 +102,8 @@ print("Here's 'Test string' in Morse code: ", from_letters("Test string"))
 #         restart_input = input("Another? (y/n) ")
 #         restart = restart_input.lower()
       
-    </py-script> 
+      	</py-script> 
+			</div>
+    </div>
   </body>
 </html>
