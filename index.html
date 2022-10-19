@@ -22,8 +22,8 @@ e_to_m = {
     ':':'---...', ';':'-.-.-.', '=':'-...-',
     '+':'.-.-.', '-':'-....-', '_':'..--.-',
     '"':'.-..-.', '$':'...-..-', '@':'.--.-.',
-    '<End of Work>':'...-.-', '<Error>':'........',
-    '<Start>':'-.-.-' 
+    'End of Work':'...-.-', 'Error':'........',
+    'Start':'-.-.-' 
     } 
 
 m_to_e = {
@@ -43,8 +43,8 @@ m_to_e = {
     '---...':':', '-.-.-.':';', '-...-':'=',
     '.-.-.':'+', '-....-':'-', '..--.-':'_',
     '.-..-.':'"', '...-..-':'$', '.--.-.':'@',
-    '...-.-':'<End of Work>', '........':'<Error>',
-    '-.-.-':'<Start>'
+    '...-.-':'End of Work', '........':'Error',
+    '-.-.-':'Start'
     } 
 
 restart = "y"
@@ -67,33 +67,35 @@ def from_morse(code_input):
     #     output += m_to_e.get(letter, '?')
     # return output
     return "Test string"
+
+print("Here's 'Test string' in Morse code: ", from_letters("Test string"))
        
 
-while restart != "n":
-    print("""Please select the following:
-M for Morse-to-Letters, or 
-L for Letters-to-Morse""")
-    morse_original = input("> ")
-    morse = morse_original.lower()
+# while restart != "n":
+#     print("""Please select the following:
+# M for Morse-to-Letters, or 
+# L for Letters-to-Morse""")
+#     morse_original = input("> ")
+#     morse = morse_original.lower()
 
-    if morse == 'l':
-        code_input = input("""Please write/paste characters here
-(spaces between words): """)
-        print("Here it is in Morse Code:", from_letters(code_input))
-        restart_input = input("Another? (y/n) ")
-        restart = restart_input.lower()
-
-    elif morse == 'm':
-        code_input = input("""Please write/paste string here:
-(periods for dots and hyphens for dashes and *spaces
-between letters*): """)
-        print("Here it is in characters:", from_morse(code_input))
-        restart_input = input("Another? (y/n) ")
-        restart = restart_input.lower()
-
-    else:
-        restart_input = input("Another? (y/n) ")
-        restart = restart_input.lower()
+#     if morse == 'l':
+#         code_input = input("""Please write/paste characters here
+# (spaces between words): """)
+#         print("Here it is in Morse Code:", from_letters(code_input))
+#         restart_input = input("Another? (y/n) ")
+#         restart = restart_input.lower()
+# 
+#     elif morse == 'm':
+#         code_input = input("""Please write/paste string here:
+# (periods for dots and hyphens for dashes and *spaces
+# between letters*): """)
+#         print("Here it is in characters:", from_morse(code_input))
+#         restart_input = input("Another? (y/n) ")
+#         restart = restart_input.lower()
+# 
+#     else:
+#         restart_input = input("Another? (y/n) ")
+#         restart = restart_input.lower()
       
     </py-script> 
   </body>
