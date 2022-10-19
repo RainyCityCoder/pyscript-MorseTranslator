@@ -51,27 +51,23 @@ restart = "y"
 
 def from_letters(code_input):
     """Translate letters to Morse"""
-    # output = ""
-    # code = code_input.lower()
-    # for letter in code:
-    #     output += e_to_m.get(letter, '?')
-    # return output
-    return "Test string"
-    
+    output = ""
+    code = code_input.lower()
+    for letter in code:
+        output += e_to_m.get(letter, '?')
+    return output
 
+    
 def from_morse(code_input):
     """Convert Morse to letters"""
-    # output = ""
-    # code = code_input.split(' ') 
-    # for letter in code:
-    #     output += m_to_e.get(letter, '?')
-    # return output
-    return "Test string"
+    output = ""
+    code = code_input.split(' ') 
+    for letter in code:
+        output += m_to_e.get(letter, '?')
+    return output
 
 
-test_string = "Test string"
-print("Here's 'Test string' in Morse code: ", from_letters(test_string))
-       
+print("Here's 'Test string' in Morse code: ", from_letters("Test string"))   
 
 # while restart != "n":
 #     print("""Please select the following:
