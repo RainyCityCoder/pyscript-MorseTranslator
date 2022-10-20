@@ -1,17 +1,30 @@
 <html>
   <head>
-		<link href="style.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   </head>
   <body> 
     <div class="container">
-			<h1>RainyCityCoder's Morse Code Translator</h1>
-			<p>A simple static site for translating Morse Code to letters, or letters to Morse Code. Built with HTML, <a href="https://getbootstrap.com/">Bootstrap</a>, and <a href="https://pyscript.net/">PyScript</a>>.</p>
 			<div class="row">
-				<textarea name="input_str" id="input_str" 				class="border border-danger">
-				</textarea>
+				<h1 class="text-center">RainyCityCoder's Morse Code Translator</h1>
+				<p class="text-center">A simple static site for translating Morse Code to letters, or letters to Morse Code. Built with HTML, <a href="https://getbootstrap.com/">Bootstrap</a>, and <a href="https://pyscript.net/">PyScript</a>.</p>
+			</div>
+			<div class="row px-3">
+				<textarea name="input_str" id="input_str" 				class="border border-primary" rows="5"
+				placeholder="text here (periods and hyphens for dots and dashes)..."></textarea>
+			</div>
+			<div class="row py-2">
+				<div class="d-grid gap-2 col-4 mx-auto text-center">
+					<h2 class="fs-3">Translate...</h2>
+					<button type="button" 
+					class="btn btn-outline-primary">...Letters to Morse</button>
+					<button type="button" 
+					class="btn btn-outline-primary">...Morse to Letters</button>
+				</div>
+			</div>
+			<div class="row py-2 text-center">
+				<h2 class="fs-3">Result &#8628;</h2>
       	<py-script> 
 e_to_m = {
     'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
@@ -103,8 +116,8 @@ print("Here's 'Test string' in Morse code: ", from_letters("Test string"))
 #         restart_input = input("Another? (y/n) ")
 #         restart = restart_input.lower()
       
-      	</py-script> 
+					</py-script> 
+				</div>
 			</div>
-    </div>
-  </body>
+		</body>
 </html>
