@@ -11,113 +11,103 @@
 				<p class="text-center">A simple static site for translating Morse Code to letters, or letters to Morse Code. Built with HTML, <a href="https://getbootstrap.com/">Bootstrap</a>, and <a href="https://pyscript.net/">PyScript</a>.</p>
 			</div>
 			<div class="row px-3">
-				<textarea name="input_str" id="input_str" 				class="border border-primary" rows="5"
-				placeholder="text here (periods and hyphens for dots and dashes)..."></textarea>
+				<textarea id="input_str" class="border border-primary" rows="5" placeholder="text here (periods and hyphens for dots and dashes)..."></textarea>
+                <div class="d-grid col-4 my-2 mx-auto">
+                    <!-- py-onClick attrib. is PyScript-onClick handler, was deprecated in favor of py-click -->
+                    <button id="clear" type="button" class="btn btn-outline-secondary" py-click="clear()">Clear Text</button>
+                </div>
 			</div>
 			<div class="row py-2">
 				<div class="d-grid gap-2 col-4 mx-auto text-center">
 					<h2 class="fs-3">Translate...</h2>
-					<button type="button" 
-					class="btn btn-outline-primary">...Letters to Morse</button>
-					<button type="button" 
-					class="btn btn-outline-primary">...Morse to Letters</button>
+					<button id="from_letters" type="button" class="btn btn-outline-primary" py-click="from_letters()">...Letters to Morse</button>
+					<button id="from_morse" type="button" class="btn btn-outline-primary" py-click="from_morse()">...Morse to Letters</button>
 				</div>
 			</div>
 			<div class="row py-2 text-center">
 				<h2 class="fs-3">Result &#8628;</h2>
-      	<py-script> 
+                <p id="output"></p>
+            </div>
+        </div>
+    </body>
+    <py-script> 
+code_input = Element("input_str")
+output = Element("output")
+
 e_to_m = {
-    'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
-    'e':'.', 'f':'..-.', 'g':'--.', 'h':'....',
-    'i':'..', 'j':'.---', 'k':'-.-', 'l':'.-..',
-    'm':'--', 'n':'-.', 'o':'---', 'p':'.--.',
-    'q':'--.-', 'r':'.-.', 's':'...', 't':'-',
-    'u':'..-', 'v':'...-', 'w':'.--', 'x':'-..-',
-    'y':'-.--', 'z':'--..', ' ':' ', '1':'.----',
-    '2':'..---', '3':'...--', '4':'....-',
-    '5':'.....', '6':'-....', '7':'--...',
-    '8':'---..', '9':'----.', '0':'-----',
-    '.':'.-.-.-', ',':'--..--', '?':'..--..',
-    "'":".----.", '!':'-.-.--', '/':'-..-.',
-    '(':'-.--.', ')':'-.--.-', '&':'.-...',
-    ':':'---...', ';':'-.-.-.', '=':'-...-',
-    '+':'.-.-.', '-':'-....-', '_':'..--.-',
-    '"':'.-..-.', '$':'...-..-', '@':'.--.-.',
-    'End of Work':'...-.-', 'Error':'........',
-    'Start':'-.-.-' 
-    } 
+'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
+'e':'.', 'f':'..-.', 'g':'--.', 'h':'....',
+'i':'..', 'j':'.---', 'k':'-.-', 'l':'.-..',
+'m':'--', 'n':'-.', 'o':'---', 'p':'.--.',
+'q':'--.-', 'r':'.-.', 's':'...', 't':'-',
+'u':'..-', 'v':'...-', 'w':'.--', 'x':'-..-',
+'y':'-.--', 'z':'--..', ' ':' ', '1':'.----',
+'2':'..---', '3':'...--', '4':'....-',
+'5':'.....', '6':'-....', '7':'--...',
+'8':'---..', '9':'----.', '0':'-----',
+'.':'.-.-.-', ',':'--..--', '?':'..--..',
+"'":".----.", '!':'-.-.--', '/':'-..-.',
+'(':'-.--.', ')':'-.--.-', '&':'.-...',
+':':'---...', ';':'-.-.-.', '=':'-...-',
+'+':'.-.-.', '-':'-....-', '_':'..--.-',
+'"':'.-..-.', '$':'...-..-', '@':'.--.-.',
+'End of Work':'...-.-', 'Error':'........',
+'Start':'-.-.-' 
+} 
 
 m_to_e = {
-    '.-':'a', '-...':'b', '-.-.':'c', '-..':'d',
-    '.':'e', '..-.':'f', '--.':'g', '....':'h',
-    '..':'i', '.---':'j', '-.-':'k', '.-..':'l',
-    '--':'m', '-.':'n', '---':'o', '.--.':'p',
-    '--.-':'q', '.-.':'r', '...':'s', '-':'t',
-    '..-':'u', '...-':'v', '.--':'w', '-..-':'x',
-    '-.--':'y', '--..':'z', ' ':' ', '.----':'1',
-    '..---':'2', '...--':'3', '....-':'4',
-    '.....':'5', '-....':'6', '--...':'7',
-    '---..':'8', '----.':'9', '-----':'0',
-    '.-.-.-':'.', '--..--':',', '..--..':'?',
-    ".----.":"'", '-.-.--':'!', '-..-.':'/',
-    '-.--.':'(', '-.--.-':')', '.-...':'&',
-    '---...':':', '-.-.-.':';', '-...-':'=',
-    '.-.-.':'+', '-....-':'-', '..--.-':'_',
-    '.-..-.':'"', '...-..-':'$', '.--.-.':'@',
-    '...-.-':'End of Work', '........':'Error',
-    '-.-.-':'Start'
-    } 
+'.-':'a', '-...':'b', '-.-.':'c', '-..':'d',
+'.':'e', '..-.':'f', '--.':'g', '....':'h',
+'..':'i', '.---':'j', '-.-':'k', '.-..':'l',
+'--':'m', '-.':'n', '---':'o', '.--.':'p',
+'--.-':'q', '.-.':'r', '...':'s', '-':'t',
+'..-':'u', '...-':'v', '.--':'w', '-..-':'x',
+'-.--':'y', '--..':'z', ' ':' ', '.----':'1',
+'..---':'2', '...--':'3', '....-':'4',
+'.....':'5', '-....':'6', '--...':'7',
+'---..':'8', '----.':'9', '-----':'0',
+'.-.-.-':'.', '--..--':',', '..--..':'?',
+".----.":"'", '-.-.--':'!', '-..-.':'/',
+'-.--.':'(', '-.--.-':')', '.-...':'&',
+'---...':':', '-.-.-.':';', '-...-':'=',
+'.-.-.':'+', '-....-':'-', '..--.-':'_',
+'.-..-.':'"', '...-..-':'$', '.--.-.':'@',
+'...-.-':'End of Work', '........':'Error',
+'-.-.-':'Start'
+} 
 
-# restart = "y"
-
-def from_letters(code_input):
-    """Translate letters to Morse"""
-    output = ""
-    code = code_input.lower()
+def from_letters(*args, **kwargs):
+    """Translate letters to Morse
+    Use code_input.value to access text entered,
+    instead of the object
+    """
+    morse_output = ""
+    code = code_input.value
+    code.lower()
     for letter in code:
-        output += e_to_m.get(letter, '?')
-    return output
+      morse_output += e_to_m.get(letter, '?')
+    output.write(morse_output)
 
-    
-def from_morse(code_input):
-    """Convert Morse to letters"""
-    output = ""
-    code = code_input.split(' ') 
+
+def from_morse(*args, **kwargs):
+    """Translate letters to Morse
+    Use code_input.value to access text entered,
+    instead of the object
+    """
+    letter_output = ""
+    code = code_input.value
+    code.split(' ') 
     for letter in code:
-        output += m_to_e.get(letter, '?')
-    return output
+      letter_output += m_to_e.get(letter, '?')
+    output.write(letter_output)
 
 
-print("Here's 'Test string' in Morse code: ", from_letters("Test string"))   
+def clear():
+  """Clear textarea id=input_str"""
+  code_input.clear()
 
-# while restart != "n":
-#     print("""Please select the following:
-# M for Morse-to-Letters, or 
-# L for Letters-to-Morse""")
-#     morse_original = input("> ")
-#     morse = morse_original.lower()
 
-#     if morse == 'l':
-#         code_input = input("""Please write/paste characters here
-# (spaces between words): """)
-#         print("Here it is in Morse Code:", from_letters(code_input))
-#         restart_input = input("Another? (y/n) ")
-#         restart = restart_input.lower()
-# 
-#     elif morse == 'm':
-#         code_input = input("""Please write/paste string here:
-# (periods for dots and hyphens for dashes and *spaces
-# between letters*): """)
-#         print("Here it is in characters:", from_morse(code_input))
-#         restart_input = input("Another? (y/n) ")
-#         restart = restart_input.lower()
-# 
-#     else:
-#         restart_input = input("Another? (y/n) ")
-#         restart = restart_input.lower()
-      
-					</py-script> 
-				</div>
-			</div>
-		</body>
+  # print("Here's 'Test string' in Morse code: ", from_letters("Test string"))   
+
+    </py-script> 
 </html>
