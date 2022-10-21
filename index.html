@@ -21,7 +21,7 @@
 				<div class="d-grid gap-2 col-4 mx-auto text-center">
 					<h2 class="fs-3">Translate...</h2>
 					<button id="from_letters" type="button" class="btn btn-outline-primary" py-click="from_letters()">...Letters to Morse</button>
-					<button id="from_morse" type="button" class="btn btn-outline-primary" py-click="from_morse()">...Morse to Letters</button>
+					<!-- <button id="from_morse" type="button" class="btn btn-outline-primary" py-click="from_morse()">...Morse to Letters</button> -->
 				</div>
 			</div>
 			<div class="row py-2 text-center">
@@ -89,17 +89,17 @@ def from_letters(*args, **kwargs):
     output.write(morse_output)
 
 
-def from_morse(*args, **kwargs):
-    """Translate letters to Morse
-    Use code_input.value to access text entered,
-    instead of the object
-    """
-    letter_output = ""
-    code = code_input.value
-    code.split(' ') 
-    for letter in code:
-      letter_output += m_to_e.get(letter, '?')
-    output.write(letter_output)
+#def from_morse(*args, **kwargs):
+#    """Translate letters to Morse
+#    Use code_input.value to access text entered,
+#    instead of the object
+#    """
+#    letter_output = ""
+#    code = code_input.value
+#    code.split(' ') 
+#    for letter in code:
+#      letter_output += m_to_e.get(letter, '?')
+#    output.write(letter_output)
 
 
 def clear():
