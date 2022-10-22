@@ -6,27 +6,29 @@
   </head>
   <body> 
     <div class="container">
-			<div class="row">
-				<h1 class="text-center">RainyCityCoder's Morse Code Translator</h1>
-				<p class="text-center">A simple static site for translating Morse Code to letters, or letters to Morse Code. Built with HTML, <a href="https://getbootstrap.com/">Bootstrap</a>, and <a href="https://pyscript.net/">PyScript</a>.</p>
+			<div class="row text-center">
+				<h1>RainyCityCoder's Morse Code Translator</h1>
+				<p>A simple static site for translating Morse Code to letters, or letters to Morse Code. Built with HTML, <a href="https://getbootstrap.com/">Bootstrap</a>, and <a href="https://pyscript.net/">PyScript</a>.</p>
+        <p>Code available on <a href="https://github.com/RainyCityCoder/pyscript-MorseTranslator">GitHub</a>.</p>
 			</div>
-			<div class="row px-3">
+			<div class="row px-3 text-center">
 				<textarea id="input_str" class="border border-primary" rows="5" placeholder="text here (periods and hyphens for dots and dashes)..."></textarea>
-                <div class="d-grid col-4 my-2 mx-auto">
-                    <!-- py-onClick attrib. is PyScript-onClick handler, was deprecated in favor of py-click -->
-                    <button id="clear" type="button" class="btn btn-outline-secondary" py-click="clear()">Clear Text</button>
-                </div>
+        <p class="fs-6 fw-lighter">Place a space between each Morse 'letter' or the program will return nothing but 'e' & 't'.</p>
+        <div class="d-grid col-4 mb-2 mx-auto">
+<!-- py-onClick attrib. is PyScript's on-click handler, was deprecated in favor of py-click -->
+           <button id="clear" type="button" class="btn btn-outline-secondary" py-click="clear()">Clear Text</button>
+        </div>
 			</div>
 			<div class="row py-2">
 				<div class="d-grid gap-2 col-4 mx-auto text-center">
 					<h2 class="fs-3">Translate...</h2>
 					<button id="from_letters" type="button" class="btn btn-outline-primary" py-click="from_letters()">...Letters to Morse</button>
-					<!-- <button id="from_morse" type="button" class="btn btn-outline-primary" py-click="from_morse()">...Morse to Letters</button> -->
+					<button id="from_morse" type="button" class="btn btn-outline-primary" py-click="from_morse()">...Morse to Letters</button>
 				</div>
 			</div>
 			<div class="row py-2 text-center">
 				<h2 class="fs-3">Result &#8628;</h2>
-                <p id="output"></p>
+                <p id="output" class="fs-4"></p>
             </div>
         </div>
     </body>
@@ -76,30 +78,28 @@ m_to_e = {
 '-.-.-':'Start'
 } 
 
-def from_letters(*args, **kwargs):
+def from_letters():
     """Translate letters to Morse
     Use code_input.value to access text entered,
     instead of the object
     """
     morse_output = ""
-    code = code_input.value
-    code.lower()
+    code = code_input.value.lower()
     for letter in code:
       morse_output += e_to_m.get(letter, '?')
     output.write(morse_output)
 
 
-#def from_morse(*args, **kwargs):
-#    """Translate letters to Morse
-#    Use code_input.value to access text entered,
-#    instead of the object
-#    """
-#    letter_output = ""
-#    code = code_input.value
-#    code.split(' ') 
-#    for letter in code:
-#      letter_output += m_to_e.get(letter, '?')
-#    output.write(letter_output)
+def from_morse():
+    """Translate letters to Morse
+    Use code_input.value to access text entered,
+    instead of the object
+    """
+    letter_output = ""
+    code = code_input.value.split(' ') 
+    for letter in code:
+      letter_output += m_to_e.get(letter, '?')
+    output.write(letter_output)
 
 
 def clear():
