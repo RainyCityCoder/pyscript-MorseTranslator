@@ -1,8 +1,8 @@
 <html>
   <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.2/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.5.2/core.js"></script>
   </head>
   <body> 
     <div class="container">
@@ -15,15 +15,14 @@
 				<textarea id="input_str" class="border border-primary" rows="5" placeholder="text here (periods and hyphens for dots and dashes)..."></textarea>
         <p class="fs-6 fw-lighter">Place a space between each Morse 'letter' or the program will return nothing but 'e' & 't'.</p>
         <div class="d-grid col-4 mb-2 mx-auto">
-<!-- py-onClick attrib. is PyScript's on-click handler, was deprecated in favor of py-click -->
-           <button id="clear" type="button" class="btn btn-outline-secondary" py-click="clear()">Clear Text</button>
+           <button id="clear" type="button" class="btn btn-outline-secondary" py-click="clear">Clear Text</button>
         </div>
 			</div>
 			<div class="row py-2">
 				<div class="d-grid gap-2 col-4 mx-auto text-center">
 					<h2 class="fs-3">Translate...</h2>
-					<button id="from_letters" type="button" class="btn btn-outline-primary" py-click="from_letters()">...Letters to Morse</button>
-					<button id="from_morse" type="button" class="btn btn-outline-primary" py-click="from_morse()">...Morse to Letters</button>
+					<button id="from_letters" type="button" class="btn btn-outline-primary" py-click="from_letters">...Letters to Morse</button>
+					<button id="from_morse" type="button" class="btn btn-outline-primary" py-click="from_morse">...Morse to Letters</button>
 				</div>
 			</div>
 			<div class="row py-2 text-center">
@@ -31,83 +30,8 @@
                 <p id="output" class="fs-4"></p>
             </div>
         </div>
+      <script type="py" src="./main.py" config=""></script>  
     </body>
-    <py-script> 
-code_input = Element("input_str")
-output = Element("output")
-
-e_to_m = {
-'a':'.-', 'b':'-...', 'c':'-.-.', 'd':'-..',
-'e':'.', 'f':'..-.', 'g':'--.', 'h':'....',
-'i':'..', 'j':'.---', 'k':'-.-', 'l':'.-..',
-'m':'--', 'n':'-.', 'o':'---', 'p':'.--.',
-'q':'--.-', 'r':'.-.', 's':'...', 't':'-',
-'u':'..-', 'v':'...-', 'w':'.--', 'x':'-..-',
-'y':'-.--', 'z':'--..', ' ':' ', '1':'.----',
-'2':'..---', '3':'...--', '4':'....-',
-'5':'.....', '6':'-....', '7':'--...',
-'8':'---..', '9':'----.', '0':'-----',
-'.':'.-.-.-', ',':'--..--', '?':'..--..',
-"'":".----.", '!':'-.-.--', '/':'-..-.',
-'(':'-.--.', ')':'-.--.-', '&':'.-...',
-':':'---...', ';':'-.-.-.', '=':'-...-',
-'+':'.-.-.', '-':'-....-', '_':'..--.-',
-'"':'.-..-.', '$':'...-..-', '@':'.--.-.',
-'End of Work':'...-.-', 'Error':'........',
-'Start':'-.-.-' 
-} 
-
-m_to_e = {
-'.-':'a', '-...':'b', '-.-.':'c', '-..':'d',
-'.':'e', '..-.':'f', '--.':'g', '....':'h',
-'..':'i', '.---':'j', '-.-':'k', '.-..':'l',
-'--':'m', '-.':'n', '---':'o', '.--.':'p',
-'--.-':'q', '.-.':'r', '...':'s', '-':'t',
-'..-':'u', '...-':'v', '.--':'w', '-..-':'x',
-'-.--':'y', '--..':'z', ' ':' ', '.----':'1',
-'..---':'2', '...--':'3', '....-':'4',
-'.....':'5', '-....':'6', '--...':'7',
-'---..':'8', '----.':'9', '-----':'0',
-'.-.-.-':'.', '--..--':',', '..--..':'?',
-".----.":"'", '-.-.--':'!', '-..-.':'/',
-'-.--.':'(', '-.--.-':')', '.-...':'&',
-'---...':':', '-.-.-.':';', '-...-':'=',
-'.-.-.':'+', '-....-':'-', '..--.-':'_',
-'.-..-.':'"', '...-..-':'$', '.--.-.':'@',
-'...-.-':'End of Work', '........':'Error',
-'-.-.-':'Start'
-} 
-
-def from_letters():
-    """Translate letters to Morse
-    Use code_input.value to access text entered,
-    instead of the object
-    """
-    morse_output = ""
-    code = code_input.value.lower()
-    for letter in code:
-      morse_output += e_to_m.get(letter, '?')
-    output.write(morse_output)
-
-
-def from_morse():
-    """Translate letters to Morse
-    Use code_input.value to access text entered,
-    instead of the object
-    """
-    letter_output = ""
-    code = code_input.value.split(' ') 
-    for letter in code:
-      letter_output += m_to_e.get(letter, '?')
-    output.write(letter_output)
-
-
-def clear():
-  """Clear textarea id=input_str"""
-  code_input.clear()
-
-
-  # print("Here's 'Test string' in Morse code: ", from_letters("Test string"))   
-
-    </py-script> 
+    <!-- <py-script> 
+    </py-script>  -->
 </html>
