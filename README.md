@@ -21,6 +21,7 @@ _Please Note: spaces, as well as Morse Code for numbers and punctuation are allo
 1. Type or copy-paste the string of morse code or English you wish to convert to English into the aforementioned text-entry box.
    1. `...Letters-to-Morse` button will translate English characters into Morse Code.
    2. `...Morse-to-Letters` button will translate Morse Code into English characters.
+      1. A space should be inserted between each Morse "letter", else the translation will be inaccurate. Example: `-- --- .-. ... .`
 2. The resulting translation will appear under the `Result ↴` test. 
    1. A `[space]` designator is used between words when translating from English to Morse. Including this in back-translating (Morse to English) is OK.
 3. If you should need to delete the text in the text-entry box, you may use the `Clear Text` button found immediately underneath the text-entry box.
